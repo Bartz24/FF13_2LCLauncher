@@ -36,7 +36,18 @@ namespace FF13_2LCLauncher
             comboBoxShadows.SelectedIndex = comboBoxShadows.Items.IndexOf(settings.Shadows);
             comboBoxMSAA.SelectedIndex = comboBoxMSAA.Items.IndexOf(settings.MSAA);
 
-            AutoSearchDir();
+            if (File.Exists("ff13_2exepath.txt"))
+            {
+                textBoxPath.Text = File.ReadAllText("ff13_2exepath.txt");
+            }
+            if (textBoxPath.Text == null || !File.Exists(textBoxPath.Text))
+            {
+                textBoxPath.Text = SearchSteamRegistry(@"\alba_data\prog\win\bin\ffxiii2img.exe");
+                if (textBoxPath.Text != null && File.Exists(textBoxPath.Text))
+                {
+                    File.WriteAllText("ff13_2exepath.txt", textBoxPath.Text);
+                }
+            }
         }
 
         private void comboBoxDisplay_SelectedIndexChanged(object sender, EventArgs e)
@@ -71,18 +82,18 @@ namespace FF13_2LCLauncher
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            String path = GetFF13Directory();
-            if (String.IsNullOrEmpty(path))
+            if (String.IsNullOrEmpty(textBoxPath.Text))
             {
-                MessageBox.Show("Could not find the FF13-2 steam files! Report this issue to the dev, Bartz24!");
+                MessageBox.Show("Path to the FF13-2 EXE ffxiii2img.exe was not set! You can set this manually by finding this in your steam files.\n" +
+                    "It is most likely in \"FINAL FANTASY XIII-2\\alba_data\\prog\\win\\bin\\ffxiii2img.exe\"");
                 return;
             }
             Process process = new Process();
-            process.StartInfo.FileName = path + "\\alba_data\\prog\\win\\bin\\ffxiii2img.exe";
+            process.StartInfo.FileName = textBoxPath.Text;
             process.StartInfo.Arguments = String.Join(" ", GetArgs());
             process.Start();
 
-            Thread.Sleep(5000);
+            Thread.Sleep(10000);
 
             SetWindowText(process.MainWindowHandle, "FINAL FANTASY XIII-2 160f Lucky Coin Mod");
 
@@ -168,12 +179,13 @@ namespace FF13_2LCLauncher
             return arguments;
         }
 
-        private void AutoSearchDir()
+        private static string SearchSteamRegistry(string path)
         {
             object returnVal = Registry.GetValue("HKEY_CURRENT_USER\\Software\\Valve\\Steam", "SteamPath", "c:/program files (x86)/steam");
             returnVal = returnVal.ToString().Replace("/", "\\");
 
-            if (GetFF13Path(returnVal.ToString()) == null)
+            string steamPath = GetSteamPath(path, returnVal.ToString());
+            if (steamPath == null)
             {
                 string text = File.ReadAllText(returnVal.ToString() + "/steamapps/libraryfolders.vdf");
                 Regex regex = new Regex("\"\\d+\"\\s+\"(.*)\"");
@@ -181,53 +193,34 @@ namespace FF13_2LCLauncher
                 {
                     if (match.Success)
                     {
-                        if (GetFF13Path(match.Groups[1].Value) != null)
-                            break;
+                        steamPath = GetSteamPath(path, match.Groups[1].Value);
+                        return steamPath;
                     }
                 }
             }
+            return steamPath;
         }
-
-        public static string GetFF13Directory()
+        private static string GetSteamPath(string pathCheck, string directoryCheck = null)
         {
-            string path = GetFF13Path()?.Replace("\\\\", "\\");
-            if (!String.IsNullOrEmpty(path) && path.EndsWith("\\FFXiiiSteam.dll"))
-                return path.Substring(0, path.Length - "\\FFXiiiSteam.dll".Length);
+            if (directoryCheck != null && Directory.Exists(directoryCheck))
+            {
+                string[] paths = Directory.GetFiles(directoryCheck, pathCheck.Substring(pathCheck.LastIndexOf("\\") + 1), SearchOption.AllDirectories);
+                if (paths.Length > 0)
+                    return paths[0].Replace("/", "\\");
+            }
             return null;
         }
 
-        private static string FF13FilePath = null;
-
-        private static string GetFF13Path(string directoryCheck = null)
+        private void buttonFind_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(FF13FilePath) || !File.Exists(FF13FilePath) || !FF13FilePath.EndsWith("FINAL FANTASY XIII-2\\FFXiiiSteam.dll"))
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Title = "Please select the FF13-2 Executable ffxiii2img.exe.";
+            dialog.Filter = "FF13-2 EXE|ffxiii2img.exe";
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
-                FF13FilePath = null;
-                if (File.Exists("ff13_2path.txt"))
-                {
-                    FF13FilePath = File.ReadAllText("ff13_2path.txt").Replace("/", "\\");
-                    FF13FilePath = (String.IsNullOrEmpty(FF13FilePath) || !File.Exists(FF13FilePath.Substring(0, FF13FilePath.LastIndexOf("\\")) + "\\alba_data\\prog\\win\\bin\\ffxiii2img.exe")) ? null : FF13FilePath;
-                    if (File.Exists(FF13FilePath))
-                        return FF13FilePath;
-                }
-                if (directoryCheck != null && Directory.Exists(directoryCheck))
-                {
-                    string[] paths = Directory.GetFiles(directoryCheck, "FFXiiiSteam.dll", SearchOption.AllDirectories);
-                    paths.ToList().ForEach(p =>
-                    {
-                        p = p.Replace("/", "\\").Replace("\\\\", "\\");
-                        string path = p.Substring(0, p.LastIndexOf("\\")) + "\\alba_data\\prog\\win\\bin\\ffxiii2img.exe";
-                        if (File.Exists(path))
-                            FF13FilePath = p.Replace("/", "\\");
-                    });
-                }
+                textBoxPath.Text = dialog.FileName;
+                File.WriteAllText("ff13_2exepath.txt", textBoxPath.Text);
             }
-
-            if (FF13FilePath != null)
-                File.WriteAllText("ff13_2path.txt", FF13FilePath);
-            else
-                File.WriteAllText("ff13_2path.txt", "");
-            return FF13FilePath;
         }
     }
 }

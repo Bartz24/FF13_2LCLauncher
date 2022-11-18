@@ -41,17 +41,19 @@
             this.comboBoxMSAA = new System.Windows.Forms.ComboBox();
             this.buttonStart = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
+            this.textBoxPath = new System.Windows.Forms.TextBox();
+            this.buttonFind = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // comboBoxDisplay
             // 
-            this.comboBoxDisplay.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.comboBoxDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBoxDisplay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxDisplay.FormattingEnabled = true;
             this.comboBoxDisplay.Items.AddRange(new object[] {
             "Windowed",
             "Full Screen"});
-            this.comboBoxDisplay.Location = new System.Drawing.Point(12, 71);
+            this.comboBoxDisplay.Location = new System.Drawing.Point(12, 99);
             this.comboBoxDisplay.Name = "comboBoxDisplay";
             this.comboBoxDisplay.Size = new System.Drawing.Size(121, 21);
             this.comboBoxDisplay.TabIndex = 0;
@@ -59,9 +61,9 @@
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 55);
+            this.label1.Location = new System.Drawing.Point(9, 83);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(71, 13);
             this.label1.TabIndex = 1;
@@ -69,9 +71,9 @@
             // 
             // label2
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 100);
+            this.label2.Location = new System.Drawing.Point(9, 128);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 13);
             this.label2.TabIndex = 3;
@@ -79,13 +81,13 @@
             // 
             // comboBoxResolution
             // 
-            this.comboBoxResolution.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.comboBoxResolution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBoxResolution.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxResolution.FormattingEnabled = true;
             this.comboBoxResolution.Items.AddRange(new object[] {
             "1280 x 720",
             "1920 x 1080"});
-            this.comboBoxResolution.Location = new System.Drawing.Point(12, 116);
+            this.comboBoxResolution.Location = new System.Drawing.Point(12, 144);
             this.comboBoxResolution.Name = "comboBoxResolution";
             this.comboBoxResolution.Size = new System.Drawing.Size(121, 21);
             this.comboBoxResolution.TabIndex = 2;
@@ -93,9 +95,9 @@
             // 
             // label3
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 147);
+            this.label3.Location = new System.Drawing.Point(9, 175);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 13);
             this.label3.TabIndex = 5;
@@ -103,13 +105,13 @@
             // 
             // comboBoxVoices
             // 
-            this.comboBoxVoices.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.comboBoxVoices.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBoxVoices.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxVoices.FormattingEnabled = true;
             this.comboBoxVoices.Items.AddRange(new object[] {
             "English",
             "Japanese"});
-            this.comboBoxVoices.Location = new System.Drawing.Point(12, 163);
+            this.comboBoxVoices.Location = new System.Drawing.Point(12, 191);
             this.comboBoxVoices.Name = "comboBoxVoices";
             this.comboBoxVoices.Size = new System.Drawing.Size(121, 21);
             this.comboBoxVoices.TabIndex = 4;
@@ -117,9 +119,9 @@
             // 
             // label4
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 194);
+            this.label4.Location = new System.Drawing.Point(9, 222);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(99, 13);
             this.label4.TabIndex = 7;
@@ -127,7 +129,7 @@
             // 
             // comboBoxShadows
             // 
-            this.comboBoxShadows.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.comboBoxShadows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBoxShadows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxShadows.FormattingEnabled = true;
             this.comboBoxShadows.Items.AddRange(new object[] {
@@ -136,7 +138,7 @@
             "2048 x 2048",
             "4096 x 4096",
             "8192 x 8192"});
-            this.comboBoxShadows.Location = new System.Drawing.Point(12, 210);
+            this.comboBoxShadows.Location = new System.Drawing.Point(12, 238);
             this.comboBoxShadows.Name = "comboBoxShadows";
             this.comboBoxShadows.Size = new System.Drawing.Size(121, 21);
             this.comboBoxShadows.TabIndex = 6;
@@ -144,9 +146,9 @@
             // 
             // label5
             // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 239);
+            this.label5.Location = new System.Drawing.Point(9, 267);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(100, 13);
             this.label5.TabIndex = 9;
@@ -154,7 +156,7 @@
             // 
             // comboBoxMSAA
             // 
-            this.comboBoxMSAA.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.comboBoxMSAA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBoxMSAA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxMSAA.FormattingEnabled = true;
             this.comboBoxMSAA.Items.AddRange(new object[] {
@@ -162,7 +164,7 @@
             "x4",
             "x8",
             "x16"});
-            this.comboBoxMSAA.Location = new System.Drawing.Point(12, 255);
+            this.comboBoxMSAA.Location = new System.Drawing.Point(12, 283);
             this.comboBoxMSAA.Name = "comboBoxMSAA";
             this.comboBoxMSAA.Size = new System.Drawing.Size(121, 21);
             this.comboBoxMSAA.TabIndex = 8;
@@ -170,8 +172,8 @@
             // 
             // buttonStart
             // 
-            this.buttonStart.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonStart.Location = new System.Drawing.Point(329, 265);
+            this.buttonStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonStart.Location = new System.Drawing.Point(366, 293);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(116, 23);
             this.buttonStart.TabIndex = 10;
@@ -181,19 +183,42 @@
             // 
             // label6
             // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(28, 9);
+            this.label6.Location = new System.Drawing.Point(47, 9);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(417, 39);
             this.label6.TabIndex = 11;
             this.label6.Text = resources.GetString("label6.Text");
             // 
+            // textBoxPath
+            // 
+            this.textBoxPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxPath.Location = new System.Drawing.Point(12, 60);
+            this.textBoxPath.Name = "textBoxPath";
+            this.textBoxPath.ReadOnly = true;
+            this.textBoxPath.Size = new System.Drawing.Size(348, 20);
+            this.textBoxPath.TabIndex = 12;
+            // 
+            // buttonFind
+            // 
+            this.buttonFind.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonFind.Location = new System.Drawing.Point(366, 58);
+            this.buttonFind.Name = "buttonFind";
+            this.buttonFind.Size = new System.Drawing.Size(116, 23);
+            this.buttonFind.TabIndex = 13;
+            this.buttonFind.Text = "Set Manually";
+            this.buttonFind.UseVisualStyleBackColor = true;
+            this.buttonFind.Click += new System.EventHandler(this.buttonFind_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(457, 300);
+            this.ClientSize = new System.Drawing.Size(494, 328);
+            this.Controls.Add(this.buttonFind);
+            this.Controls.Add(this.textBoxPath);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.label5);
@@ -229,6 +254,8 @@
         private System.Windows.Forms.ComboBox comboBoxMSAA;
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBoxPath;
+        private System.Windows.Forms.Button buttonFind;
     }
 }
 
